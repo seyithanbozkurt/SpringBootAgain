@@ -15,4 +15,15 @@ public class EmployeeRepository {
     public List<Employee> getAllEmployeList() {
         return EmployeList;
     }
+
+    public Employee getEmployeeById(String id) {
+        Employee findedEmployee = null;
+        for (Employee employee : EmployeList) {
+            if(id.equals(employee.getId())) {
+                findedEmployee = employee;
+                break;
+            }
+        }
+        return findedEmployee;
+    }
 }
