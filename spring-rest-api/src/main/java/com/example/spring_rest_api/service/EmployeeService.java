@@ -1,6 +1,7 @@
 package com.example.spring_rest_api.service;
 
 import com.example.spring_rest_api.model.Employee;
+import com.example.spring_rest_api.model.UpdateEmployeeRequest;
 import com.example.spring_rest_api.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,5 +31,9 @@ public class EmployeeService {
 
     public boolean deleteEmployee(String id) {
         return employeeRepository.deleteEmployee(id);
+    }
+
+    public Employee updateEmployee(String id, UpdateEmployeeRequest request) {
+        return employeeRepository.updateEmployee(id, request);
     }
 }

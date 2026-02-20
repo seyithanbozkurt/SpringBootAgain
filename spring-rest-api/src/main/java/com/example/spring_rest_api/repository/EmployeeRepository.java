@@ -1,6 +1,7 @@
 package com.example.spring_rest_api.repository;
 
 import com.example.spring_rest_api.model.Employee;
+import com.example.spring_rest_api.model.UpdateEmployeeRequest;
 import com.example.spring_rest_api.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -73,6 +74,31 @@ public class EmployeeRepository {
         EmployeList.remove(deletedEmployee);
         return true;
 
+    }
+
+    private Employee findEmployeeById(String id) {
+        Employee findedEmployee = null;
+        for (Employee employee : EmployeList) {
+            if(id.equals(employee.getId())) {
+                findedEmployee = employee;
+                break;
+            }
+        }
+        return findedEmployee;
+    }
+    public Employee updateEmployee(String id, UpdateEmployeeRequest request){
+        Employee findEmployee = findEmployeeById(id);
+        if(findEmployee != null) {
+            deleteEmployee(id);
+
+            Employee updateemployee = new Employee();
+            updateemployee.setFirstName(request.getFirstName());
+            updateemployee.setLastName(request.getLastName());
+
+            EmployeList.add(updateemployee);
+
+        }
+        return null;
     }
 
 
