@@ -5,6 +5,7 @@ import com.example.spring_rest_api.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -26,4 +27,35 @@ public class EmployeeRepository {
         }
         return findedEmployee;
     }
+
+
+    public List<Employee> getWithParamsEmployee(String firstName, String lastName) {
+        List<Employee> employeesWithParams = new ArrayList<>();
+        if(firstName == null && lastName == null) {
+            return EmployeList;
+        }
+        for(Employee employee : EmployeList) {
+            if(firstName!=null && lastName!=null) {
+                if(employee.getFirstName().equalsIgnoreCase(firstName) && employee.getLastName().equalsIgnoreCase(lastName)) {
+                    employeesWithParams.add(employee);
+                }
+            }
+            if(firstName!=null && lastName==null) {
+                if(employee.getFirstName().equalsIgnoreCase(firstName)) {
+                    employeesWithParams.add(employee);
+                }
+            }
+            if(firstName==null && lastName!=null) {
+                if(employee.getLastName().equalsIgnoreCase(lastName)) {
+                    employeesWithParams.add(employee);
+                }
+            }
+        }
+        return employeesWithParams;
+    }
+
+
+
+
+
 }
