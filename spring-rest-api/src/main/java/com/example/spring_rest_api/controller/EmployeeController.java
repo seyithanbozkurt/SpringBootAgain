@@ -32,4 +32,10 @@ public class EmployeeController {
                                                  {
         return employeeService.getEmployeWithParam(firstName, lastName);
     }
+
+    @PostMapping("/save-employe")
+        public Employee saveEmploye(@RequestBody Employee newEmploye){
+        return employeeService.saveEmployee(newEmploye);
+    }
+
 }

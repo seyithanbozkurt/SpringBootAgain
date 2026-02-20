@@ -23,4 +23,8 @@ public class EmployeeService {
     public List<Employee> getEmployeWithParam(String FirstName, String LastName) {
         return employeeRepository.getWithParamsEmployee(FirstName, LastName);
     }
+
+    public Employee saveEmployee(Employee newEmployee) {
+        return employeeRepository.saveEmployee(newEmployee);
+    }
 }
