@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "student")
@@ -21,7 +22,7 @@ public class Student {
     private String firstname;
     @Column(name =  "last_name", nullable = false)
     private String lastname;
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "birth_of_date")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Column(name = "birth_of_date", nullable = true)
     private String birthOfDate;
 }
