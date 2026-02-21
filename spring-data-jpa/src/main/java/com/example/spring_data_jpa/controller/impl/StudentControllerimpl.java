@@ -25,4 +25,12 @@ public class StudentControllerimpl implements IStudentController {
     public List<Student> GetAllStudents() {
         return studentService.GetAllStudents();
     }
+
+    @GetMapping("/list/{id}")
+    @Override
+    public Student getStudentById(@PathVariable(name = "id") Integer id) {
+        return studentService.getStudentByID(id);
+    }
+
+
 }
