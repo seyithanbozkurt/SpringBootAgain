@@ -1,6 +1,8 @@
 package com.example.spring_data_jpa.controller.impl;
 
 import com.example.spring_data_jpa.controller.IStudentController;
+import com.example.spring_data_jpa.dto.DTOStudent;
+import com.example.spring_data_jpa.dto.DTOStudentIU;
 import com.example.spring_data_jpa.entity.Student;
 import com.example.spring_data_jpa.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,19 +18,19 @@ public class StudentControllerimpl implements IStudentController {
     private IStudentService studentService;
     @PostMapping("/save")
     @Override
-    public Student saveStudent(@RequestBody Student student) { //Dto kullanılmalı normalde
-        return studentService.saveStudent(student);
+    public DTOStudent saveStudent(@RequestBody DTOStudentIU dtoStudentIU) { //Dto kullanılmalı normalde
+        return studentService.saveStudent(dtoStudentIU);
     }
 
     @GetMapping("/list")
     @Override
-    public List<Student> GetAllStudents() {
+    public List<DTOStudent> GetAllStudents() {
         return studentService.GetAllStudents();
     }
 
     @GetMapping("/list/{id}")
     @Override
-    public Student getStudentById(@PathVariable(name = "id") Integer id) {
+    public DTOStudent getStudentById(@PathVariable(name = "id") Integer id) {
         return studentService.getStudentByID(id);
     }
 
@@ -40,8 +42,8 @@ public class StudentControllerimpl implements IStudentController {
 
     @PutMapping("/update/{id}")
     @Override
-    public Student updateStudent(@PathVariable(name = "id") Integer id, @RequestBody Student updateStudent) {
-        return studentService.updateStudent(id, updateStudent);
+    public DTOStudent updateStudent(@PathVariable(name = "id") Integer id, @RequestBody DTOStudentIU updateStudentIU) {
+        return studentService.updateStudent(id, updateStudentIU);
     }
 
 
