@@ -8,4 +8,6 @@ public interface IStudentController {
     public Student saveStudent(Student student);
     public List<Student> GetAllStudents();
     public Student getStudentById(Integer id);
+    public void deleteStudentById(Integer id);
+    public Student updateStudent(Integer id, Student updateStudent);
 }
