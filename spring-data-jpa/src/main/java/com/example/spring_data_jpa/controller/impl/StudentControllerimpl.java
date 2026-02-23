@@ -5,6 +5,7 @@ import com.example.spring_data_jpa.dto.DTOStudent;
 import com.example.spring_data_jpa.dto.DTOStudentIU;
 import com.example.spring_data_jpa.entity.Student;
 import com.example.spring_data_jpa.service.IStudentService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class StudentControllerimpl implements IStudentController {
     private IStudentService studentService;
     @PostMapping("/save")
     @Override
-    public DTOStudent saveStudent(@RequestBody DTOStudentIU dtoStudentIU) { //Dto kullanılmalı normalde
+    public DTOStudent saveStudent(@RequestBody @Valid DTOStudentIU dtoStudentIU) { //Dto kullanılmalı normalde
         return studentService.saveStudent(dtoStudentIU);
     }
 
