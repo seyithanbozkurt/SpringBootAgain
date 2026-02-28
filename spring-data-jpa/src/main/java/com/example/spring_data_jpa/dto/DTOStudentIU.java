@@ -13,8 +13,9 @@ import lombok.Setter;
 public class DTOStudentIU {
 
     @NotEmpty(message = "boş bırakılamaz!")
-    @Min(value = 3, message = "İsim alanı minimum 3 karakter olmalıdır")
-    @Max(value = 15, message = "İsim alanı maximum 15 karakter olmalıdır")
+  //  @Min(value = 3, message = "İsim alanı minimum 3 karakter olmalıdır")
+   // @Max(value = 15, message = "İsim alanı maximum 15 karakter olmalıdır")
+    @Size(min = 3, max = 20, message = "İsim alanı min 3 max 20 karakter olmalırdır")
     private String firstname;
 
     @Size(min = 3, max = 20)
