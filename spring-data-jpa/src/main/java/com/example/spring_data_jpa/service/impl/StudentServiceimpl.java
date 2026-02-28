@@ -1,7 +1,9 @@
 package com.example.spring_data_jpa.service.impl;
 
+import com.example.spring_data_jpa.dto.DTOCourse;
 import com.example.spring_data_jpa.dto.DTOStudent;
 import com.example.spring_data_jpa.dto.DTOStudentIU;
+import com.example.spring_data_jpa.entity.Course;
 import com.example.spring_data_jpa.entity.Student;
 import com.example.spring_data_jpa.repository.StudentRepository;
 import com.example.spring_data_jpa.service.IStudentService;
@@ -48,6 +50,7 @@ public class StudentServiceimpl implements IStudentService {
 
     @Override
     public DTOStudent getStudentByID(Integer id) {
+        /*
         DTOStudent dto = new DTOStudent();
        Optional<Student> optional =  studentRepository.findStudentById(id);
        if (optional.isPresent()) {
@@ -55,6 +58,25 @@ public class StudentServiceimpl implements IStudentService {
            BeanUtils.copyProperties(dbStudent, dto);
        }
        return dto;
+         */
+
+        DTOStudent dtoStudent = new DTOStudent();
+        Optional<Student> optional = studentRepository.findById(id);
+        if (optional.isPresent()) {
+            return null;
+        }
+        Student dbStudent = optional.get();
+        BeanUtils.copyProperties(dbStudent, dtoStudent);
+
+        if(dbStudent.getCourse() != null && !dbStudent.getCourse().isEmpty()) {
+            for (Course course : dbStudent.getCourse()) {
+                DTOCourse dtoCourse = new DTOCourse();
+                BeanUtils.copyProperties(course, dtoCourse);
+
+                dbStudent.getCourse().add(course);
+            }
+        }
+        return dtoStudent;
     }
 
     @Override
